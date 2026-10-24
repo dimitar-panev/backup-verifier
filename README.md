@@ -4,7 +4,7 @@
 
 Most of us create backups and then forget about them. Then the day comes when we need one, and it turns out to be corrupted, empty, or three weeks old. A backup that has never been restored is only a hope.
 
-Backup Verifier turns that hope into proof. Every night it takes your latest backup, restores it into a throwaway sandbox, checks that the data is real, and tells you whether it is OK or FAILED. If something breaks, you hear about it on Telegram within minutes.
+Backup Verifier turns that hope into proof. Every night it takes your latest backup, restores it into a throwaway sandbox, checks that the data is real, and tells you whether it is OK or FAILED. If something breaks, you hear about it on a given configured messaging platform within minutes.
 
 # Some additional information before proceeding: 
 - This whole repo is part of my SAP Mentorship program that will be 3 months long in total so I will be contributing quite often. During those 3 months every week I will have a meet with my mentor where we will be discussing my work, what I have done, any questions that I have and problems that I have stumbled upon between every week. My mentor is I.CH.
