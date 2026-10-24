@@ -18,7 +18,7 @@ The verifier is built to run as a nightly Kubernetes CronJob. Here is the short 
 
 When the temporary PostgreSQL is needed, it runs as a sidecar container in the same pod. This keeps the Docker socket out of the picture, which is a good thing for security.
 
-## Tech stack
+## Tech stack for now
 
 Everything here is free and runs on my laptop with 16 GB of RAM.
 
@@ -27,13 +27,13 @@ Everything here is free and runs on my laptop with 16 GB of RAM.
 - **Packaging:** Docker and Kubernetes, packaged with Helm and deployed by ArgoCD
 - **Quality and security:** GitHub Actions, Trivy, Gitleaks, and Syft
 
-## Roadmap
+## Planned roadmap
 
 This project grows in layers, and each layer works on its own.
 
 - **Weeks 1 to 3:** the core command line tool, unit tests, a Docker image, CI, and the broken-backup fixtures.
 - **Weeks 4 to 7:** PostgreSQL support, then Kubernetes with Helm, Terraform, and GitOps through ArgoCD.
-- **Weeks 8 and 9:** Prometheus, Grafana, and Telegram alerts, followed by security hardening.
+- **Weeks 8 and 9:** Prometheus, Grafana, and Telegram or Mail alerts, followed by security hardening.
 - **Weeks 10 to 12:** real homelab data, a disaster recovery drill, and the 1.0.0 release.
 
 ## A note on security
