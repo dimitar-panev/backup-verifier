@@ -3,7 +3,6 @@ from typing import List
 import yaml
 from pydantic import BaseModel, Field
 
-
 class BackupTarget(BaseModel):
     name: str
     type: str = Field(..., pattern="^(restic|postgres)$")
@@ -12,11 +11,9 @@ class BackupTarget(BaseModel):
     max_rpo_hours: int = 24
     expected_file: str
 
-
 class Settings(BaseModel):
     version: str
     targets: List[BackupTarget]
-
 
 def load_config(config_path: Path) -> Settings:
     """Loads and validates the YAML configuration file using Pydantic."""

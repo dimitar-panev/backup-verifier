@@ -1,8 +1,8 @@
 version: "1.0"
 targets:
-  - name: "homelab_files"
-    type: "restic"
-    repo_path: "/Users/dpanev/Documents/Code/backup-verifier/backup-repo"
-    password_env: "RESTIC_PASSWORD"
-    max_rpo_hours: 24
-    expected_file: "my-important-data/testfile.txt"
+- name: "prod_customer_portal"
+  type: "restic"
+  repo_path: "/mnt/nfs_backups/customer_portal_prod"
+  password_env: "RESTIC_PASSWORD_PORTAL"
+  max_rpo_hours: 24
+  expected_file: "app-data/system-state/verification-key.txt"
