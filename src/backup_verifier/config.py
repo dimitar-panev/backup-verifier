@@ -1,7 +1,8 @@
 from pathlib import Path
-from typing import List
+
 import yaml
 from pydantic import BaseModel, Field
+
 
 class BackupTarget(BaseModel):
     name: str
@@ -13,7 +14,7 @@ class BackupTarget(BaseModel):
 
 class Settings(BaseModel):
     version: str
-    targets: List[BackupTarget]
+    targets: list[BackupTarget]
 
 def load_config(config_path: Path) -> Settings:
     """Loads and validates the YAML configuration file using Pydantic."""

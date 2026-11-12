@@ -1,7 +1,9 @@
-from pathlib import Path
 import os
+from pathlib import Path
+
 import typer
 from loguru import logger
+
 from backup_verifier.config import load_config
 from backup_verifier.verifier import run_restic_check
 
@@ -9,13 +11,13 @@ app = typer.Typer(help="Automated nightly backup verification tool")
 
 @app.command()
 def run(
-    config: Path = typer.Option(
+    config: Path = typer.Option( # noqa: B008
         "targets.yaml",
         "--config",
         "-c",
         help="Path to the YAML configuration file",
     ),
-    sandbox: Path = typer.Option(
+    sandbox: Path = typer.Option( # noqa: B008
         "sandbox-restore",
         "--sandbox",
         "-s",
@@ -26,7 +28,7 @@ def run(
     logger.info(f"Loading configuration from {config}...")
     try:
         settings = load_config(config)
-    except Exception as e:
+    except Exception as e: # noqa: BLE001
         logger.error(f"Failed to load configuration: {e}")
         raise typer.Exit(code=1)
 

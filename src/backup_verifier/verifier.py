@@ -1,10 +1,12 @@
+import json
+import os
+import shutil
 import subprocess
 import time
-import json
-import shutil
-import os
 from pathlib import Path
+
 from loguru import logger
+
 
 def get_restic_path() -> str:
     """Finds the absolute path to the restic binary."""
@@ -90,6 +92,6 @@ def run_restic_check(repo_path: str, password: str, expected_file: str, sandbox_
     except subprocess.CalledProcessError as e:
         logger.error(f"Command failed: {e.cmd}\nOutput: {e.stderr}")
         return False
-    except Exception as e:
+    except Exception as e: # noqa: BLE001
         logger.error(f"Unexpected error during verification: {e}")
         return False
