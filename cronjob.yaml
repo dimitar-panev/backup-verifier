@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup-verifier-job
+  namespace: backup-system
+spec:
+  schedule: "0 2 * * *" # Runs every night at 2:00 AM
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: verifier
+            image: dpanev/backup-verifier:latest
+            imagePullPolicy: Always
+            command: ["backup-verifier", "--config", "/app/targets.yaml", "--sandbox", "/tmp/sandbox"]
+            env:
+            - name: RESTIC_PASSWORD_PORTAL
+              valueFrom:
+                secretKeyRef:
+                  name: restic-credentials
+                  key: password
+            volumeMounts:
+            - name: config-volume
+              mountPath: /app/targets.yaml
+              subPath: targets.yaml
+            - name: sandbox-volume
+              mountPath: /tmp/sandbox
+            - name: backup-storage
+              mountPath: /mnt
+          restartPolicy: OnFailure
+          volumes:
+          - name: config-volume
+            configMap:
+              name: verifier-config
+          - name: sandbox-volume
+            emptyDir: {}
+          - name: backup-storage
+            hostPath:
+              path: /mnt
